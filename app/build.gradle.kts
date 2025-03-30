@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.service)
 }
 
 android {
@@ -44,5 +45,11 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.recyclerview)
+    //implementation(platform(libs.firebaseBom))
+    //implementation(libs.firebaseFirestore)
+    //implementation(libs.firebaseAuth)
+    implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
+    implementation("com.google.firebase:firebase-firestore")
 
 }
+

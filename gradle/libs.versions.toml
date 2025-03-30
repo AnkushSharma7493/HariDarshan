@@ -8,6 +8,8 @@ material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
 recyclerview = "1.3.2"   # Ensure this version is latest
+firebase = "33.11.0" # Use the latest BOM version
+gs = "4.4.2"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -18,9 +20,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
-#youtube-api = { group = "com.google.android.youtube", name = "youtube-api", version = "1.2.2" }
-#google-youtube-data-api = { group = "com.google.apis", name = "google-api-services-youtube", version = "v3-rev222-1.25.0" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+google-service = { id = "com.google.gms.google-services", version.ref = "gs" }
 

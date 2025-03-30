@@ -2,6 +2,7 @@ package com.example.haridarshan.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import com.example.haridarshan.R;
+import com.example.haridarshan.models.Article;
+import com.example.haridarshan.service.ArticleService;
 
 public class SettingsFragment extends Fragment {
 
     private Switch switchTheme, switchNotifications;
-    private Button btnAbout;
+    private Button btnAddDummyArticle;
     private SharedPreferences sharedPreferences;
+
 
     @Nullable
     @Override
@@ -28,7 +32,9 @@ public class SettingsFragment extends Fragment {
         // Initialize UI elements
         switchTheme = view.findViewById(R.id.switchTheme);
         switchNotifications = view.findViewById(R.id.switchNotifications);
-        //btnAbout = view.findViewById(R.id.btnAbout);
+        btnAddDummyArticle = view.findViewById(R.id.btnAddDummyArticle);
+
+        btnAddDummyArticle.setOnClickListener(v -> addDummyArticle());
 
         // SharedPreferences for storing user settings
         sharedPreferences = requireActivity().getSharedPreferences("AppSettings", 0);
@@ -66,7 +72,31 @@ public class SettingsFragment extends Fragment {
 //        btnAbout.setOnClickListener(v ->
 //                Toast.makeText(requireContext(), "Hari Darshan v1.0 by Developer", Toast.LENGTH_LONG).show()
 //        );
-
         return view;
     }
+
+        private void addDummyArticle() {
+            long today = System.currentTimeMillis();
+            long tomorrow = today + 86400000;
+
+            Article dummyArticle = new Article(
+                    "Sample Title",
+                    "This is a dummy article : "+Math.random(),
+                    today
+            );
+
+            Article dummyArticle2 = new Article(
+                    "Sample Title",
+                    "This is a dummy article - "+Math.random(),
+                    tomorrow
+            );
+
+
+            ArticleService.getInstance().addArticle(dummyArticle);
+            ArticleService.getInstance().addArticle(dummyArticle2);
+                Log.d("Firestore", "2 Dummy article added");
+                Toast.makeText(requireContext(), "2 Dummy article added", Toast.LENGTH_LONG).show();
+
+        }
+
 }

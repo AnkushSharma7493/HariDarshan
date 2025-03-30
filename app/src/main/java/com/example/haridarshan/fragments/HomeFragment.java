@@ -2,6 +2,7 @@ package com.example.haridarshan.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.haridarshan.R;
 import com.example.haridarshan.activities.ArticleDetailActivity;
 import com.example.haridarshan.adapters.ArticleAdapter;
 import com.example.haridarshan.models.Article;
+import com.example.haridarshan.service.ArticleService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArticleAdapter articleAdapter;
-    private List<Article> articleList;
+    private List<Article> articleList=new ArrayList<>();
 
     @Nullable
     @Override
@@ -34,14 +36,16 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         // Sample Data
-        articleList = new ArrayList<>();
-        articleList.add(new Article("Spiritual Awakening", "Understanding the deeper meaning of life.", R.drawable.sample_image));
-        articleList.add(new Article("Daily Meditation", "Benefits and techniques for a peaceful mind.", R.drawable.sample_image));
-        articleList.add(new Article("Yoga & Spirituality", "How yoga connects body, mind, and soul.", R.drawable.sample_image));
+//        articleList = new ArrayList<>();
+//        articleList.add(new Article("Spiritual Awakening", "Understanding the deeper meaning of life.", R.drawable.sample_image));
+//        articleList.add(new Article("Daily Meditation", "Benefits and techniques for a peaceful mind.", R.drawable.sample_image));
+//        articleList.add(new Article("Yoga & Spirituality", "How yoga connects body, mind, and soul.", R.drawable.sample_image));
 
         articleAdapter = new ArticleAdapter(articleList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(articleAdapter);
+
+        loadArticles();
 
         // Handle item clicks
         articleAdapter.setOnItemClickListener(article -> {
@@ -53,6 +57,23 @@ public class HomeFragment extends Fragment {
 
 
         return view;
+    }
+
+
+
+
+    private void loadArticles(){
+        Log.i("Home Fragement","**********************FETCHING ARTICLES**********************");
+        ArticleService.getInstance().fetchArticles(articles -> {
+            if (!articles.isEmpty()) {
+                articleList.clear();
+                articleList.addAll(articles);
+                articleAdapter.notifyDataSetChanged();
+                Log.d("Firestore", "Fetched " + articles.size() + " articles");
+            } else {
+                Log.d("Firestore", "No articles found");
+            }
+        });
     }
 }
 
