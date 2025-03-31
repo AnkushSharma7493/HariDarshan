@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -75,7 +76,8 @@ public class SettingsFragment extends Fragment {
         return view;
     }
 
-        private void addDummyArticle() {
+
+    private void addDummyArticle() {
             long today = System.currentTimeMillis();
             long tomorrow = today + 86400000;
 

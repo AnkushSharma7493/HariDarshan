@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.haridarshan"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -45,11 +45,10 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.recyclerview)
-    //implementation(platform(libs.firebaseBom))
-    //implementation(libs.firebaseFirestore)
-    //implementation(libs.firebaseAuth)
     implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth")
 
 }
 
