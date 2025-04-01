@@ -18,15 +18,12 @@ public class AboutDialogFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_about, container, false);
 
-        TextView title = view.findViewById(R.id.about_title);
+        TextView title = view.findViewById(R.id.about_title1);
         TextView description = view.findViewById(R.id.about_description);
         Button closeButton = view.findViewById(R.id.close_button);
 
         title.setText("About Hari Darshan");
         description.setText("This app provides spiritual content for daily inspiration.");
-        description.append("This app provides spiritual content for daily inspiration.");
-        description.append("This app provides spiritual content for daily inspiration.");
-        description.append("This app provides spiritual content for daily inspiration.");
         description.append("This app provides spiritual content for daily inspiration.");
 
 

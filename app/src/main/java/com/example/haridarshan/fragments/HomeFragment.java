@@ -35,12 +35,6 @@ public class HomeFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
 
-        // Sample Data
-//        articleList = new ArrayList<>();
-//        articleList.add(new Article("Spiritual Awakening", "Understanding the deeper meaning of life.", R.drawable.sample_image));
-//        articleList.add(new Article("Daily Meditation", "Benefits and techniques for a peaceful mind.", R.drawable.sample_image));
-//        articleList.add(new Article("Yoga & Spirituality", "How yoga connects body, mind, and soul.", R.drawable.sample_image));
-
         articleAdapter = new ArticleAdapter(articleList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(articleAdapter);
@@ -54,8 +48,6 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-
-
         return view;
     }
 
@@ -63,7 +55,7 @@ public class HomeFragment extends Fragment {
 
 
     private void loadArticles(){
-        Log.i("Home Fragement","**********************FETCHING ARTICLES**********************");
+        Log.d("Home Fragement","**********************FETCHING ARTICLES**********************");
         ArticleService.getInstance().fetchArticles(articles -> {
             if (!articles.isEmpty()) {
                 articleList.clear();
